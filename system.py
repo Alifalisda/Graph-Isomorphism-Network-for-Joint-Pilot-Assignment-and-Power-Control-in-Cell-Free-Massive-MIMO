@@ -128,7 +128,7 @@ def calculate_SINR(beta, phi_matrix,deploy_param,  device, q, b):
     
     return sinr_k
 
-def sinr_loss_hetero(logits_all,b_all,q_all, data,beta_batch,deploy_param,device,lambda1=0.01, tau_gumbel=1.0
+def sinr_loss(logits_all,b_all,q_all, data,beta_batch,deploy_param,device,lambda1=0.01, tau_gumbel=1.0
 ):
     ue_batch = data.batch        
     B = int(ue_batch.max().item() + 1)
@@ -186,7 +186,7 @@ def train(model, loader, optimizer, deploy_param, device, lambda1):
 
         logits, b_out, q_out = model(data)  
 
-        loss = sinr_loss_hetero(
+        loss = sinr_loss(
             logits, b_out, q_out,
             data=data,
             beta_batch=beta_batch,
@@ -214,7 +214,7 @@ def test(model, loader, deploy_param, device, lambda1):
             graphs_list = data.to_data_list()
             beta_batch = torch.stack([g.beta for g in graphs_list], dim=0).to(device)
             logits, b_out, q_out = model(data)
-            loss = sinr_loss_hetero(
+            loss = sinr_loss(
             logits, b_out, q_out,
             data=data,
             beta_batch=beta_batch,
@@ -247,13 +247,13 @@ def trainmodel(name, model, scheduler, train_loader, val_loader, optimizer, depl
     # Save history
     import pandas as pd
     df = pd.DataFrame({'train_loss': train_loss_hist, 'val_loss': val_loss_hist})
-    df.to_csv(f'loss_history_{deploy_param.number_of_snapshots}_{deploy_param.K}_{deploy_param.L}.csv', index_label='epoch')
+    df.to_csv(f'loss_history_{deploy_param.tau}_{deploy_param.K}_{deploy_param.L}.csv', index_label='epoch')
 
     return train_loss_hist, val_loss_hist
 
 # ----------------- Evaluation -----------------
 def testing(model_gnn, test_loader, deploy_param, device):
-    K, _= deploy_param.K, deploy_param.L
+    K= deploy_param.K
     num_pilots = deploy_param.tau
     tau_c = deploy_param.tau_c
     model_gnn.eval()

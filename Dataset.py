@@ -500,7 +500,7 @@ if __name__ == "__main__":
         include_positions=None,
         include_distances=None,
         out_dir="graphs_tmp_batched",
-        final_path= f"hetero_dataset_batched_{number_AP}_{number_UE}_{number_snapshots}_chi.pt",
+        final_path= f"dataset_batched_{number_AP}_{number_UE}_{number_snapshots}_chi.pt",
         n_jobs=1,            
         base_seed=2025,
         verbose=2

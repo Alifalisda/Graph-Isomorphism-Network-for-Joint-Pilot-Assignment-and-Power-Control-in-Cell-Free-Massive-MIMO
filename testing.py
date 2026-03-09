@@ -12,9 +12,9 @@ class InitParameters:
         self.K = number_UE
         self.M = number_AP
         self.tau = number_pilots
-        self.number_pilots = number_pilots  # fix: param.number_pilots dipakai di test_model_graph
+        self.number_pilots = number_pilots 
         self.N = 4
-        self.bandwidth = 20e6
+        self.banwidth = 20e6
         self.NF = 10
         self.tau_c = 200
         self.t_min = 0
@@ -31,7 +31,7 @@ def plot_cdf(data, label, color, linestyle='-', linewidth=2, alpha=1.0, zorder=1
     print(f"[CDF] {label}: n={len(data)}")
 
     if len(data) == 0:
-        print(f"[Warning] Data '{label}' kosong. Skipping CDF plot.")
+        print(f"[Warning] Data '{label}' null. Skipping CDF plot.")
         return
 
     sorted_data = np.sort(data)
@@ -73,7 +73,6 @@ def summarize_Rk(arr):
 
 
 def _plot_and_save_cdf(res_dict, xlabel, save_path, colors=None):
-    """Helper untuk plot CDF dari dict {label: array} dan simpan ke file."""
     if colors is None:
         colors = plt.cm.tab10.colors
 
@@ -97,9 +96,7 @@ def test_model_graph(model_GIN_path, dataset_snapshot,
     param = InitParameters(number_UE, number_AP, number_pilots)
 
     cache_file = os.path.join(
-        data_path,
-        f"hetero_dataset3_batched_{number_AP}_{number_UE}_{dataset_snapshot}_chi.pt"
-    )
+        data_path)
 
     print(f"[CACHE] Loading graph dataset from:\n  {cache_file}")
     graph_list = load_graph_dataset(cache_file)
@@ -122,7 +119,7 @@ def test_model_graph(model_GIN_path, dataset_snapshot,
         num_layers=3,
         p=0.1
     ).to(device)
-    model_GIN.load_state_dict(torch.load(model_GIN_path, map_location=device))
+    model_GIN.load_state_dict(torch.load(model_GIN_path, map_location=device),strict=False)
     model_GIN.eval()
 
     # --- Testing ---
