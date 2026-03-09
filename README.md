@@ -1,6 +1,6 @@
-#Graph Isomorphism Network for Joint Pilot Assignment and Power Control in Cell-Free Massive MIMO
+# Graph Isomorphism Network for Joint Pilot Assignment and Power Control in Cell-Free Massive MIMO
 
-##Abstract of Article
+## Abstract of Article
 Pilot contamination significantly degrades the minimum spectral efficiency (SE) in cell-free massive MIMO (CF-mMIMO) systems by inducing coherent interference. To mitigate this effect, effective pilot assignment and power
 allocation mechanisms are necessary. As such, strongly interfering user equipments (UEs) are prohibited in sharing the same
 pilot sequence, while remaining coherent interference is suppressed by controlling the transmit power. The existing heuristic or graph-free deep neural networks (DNNs) methods often fail to exploit the dependency between pilots and power, while suffering from limited generalization in larger networks. We design an unsupervised graph isomorphism network (GIN) with edge features for
