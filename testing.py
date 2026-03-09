@@ -154,8 +154,8 @@ def test_model_graph(model_GIN_path, dataset_snapshot,
     )
 
     # --- Save CSV ---
-    fname_Rk   = f"Rk_user_{model}_K{number_UE}_M{number_AP}_tau{number_pilots}_{dataset_snapshot}.csv"
-    fname_Rmin = f"Rk_min_{model}_K{number_UE}_M{number_AP}_tau{number_pilots}_{dataset_snapshot}.csv"
+    fname_Rk   = f"Result/Rk_user_{model}_K{number_UE}_M{number_AP}_tau{number_pilots}_{dataset_snapshot}.csv"
+    fname_Rmin = f"Result/Rk_min_{model}_K{number_UE}_M{number_AP}_tau{number_pilots}_{dataset_snapshot}.csv"
     save_Rk_to_csv(res['GIN'],     fname_Rk)
     save_Rk_to_csv(res_min['GIN'], fname_Rmin)
 
