@@ -406,7 +406,7 @@ def  worker_batch(start_idx, end_idx, deploy_param_dict, APpositions_complex,
 def build_dataset_batched(deploy_param, n_snapshots=500, batch_size=None,
                           ap_capacity=9, topk_ap=9, topm_conflict=8,
                           include_positions=True, include_distances=True,
-                          out_dir="graphs_tmp_batched", final_path="hetero_dataset_batched.pt",
+                          out_dir="graphs_tmp_batched", final_path="dataset_batched.pt",
                           n_jobs=None, base_seed=2025, verbose=10):
     os.makedirs(out_dir, exist_ok=True) 
     APpositions_complex = RandomAPLocations(deploy_param)
