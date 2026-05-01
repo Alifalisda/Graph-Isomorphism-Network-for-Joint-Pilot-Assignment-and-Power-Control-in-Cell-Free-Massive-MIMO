@@ -164,7 +164,7 @@ def sinr_loss(logits_all,b_all,q_all, data,beta_batch,deploy_param,device,lambda
         rmin_values.append(Rmin.detach().item())
 
         term1 = torch.sum(torch.sigmoid(0.3 / (Rk + 1e-10)))
-        alpha = 2.0     
+        alpha = 3.0     
         avg_rate = Rk.mean()  
 
         loss_i = term1 - alpha * avg_rate - lambda1 * Rmin
