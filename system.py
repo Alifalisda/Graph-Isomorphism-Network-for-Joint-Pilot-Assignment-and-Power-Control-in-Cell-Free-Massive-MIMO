@@ -115,7 +115,7 @@ def calculate_SINR(beta, phi_matrix,deploy_param,  device, q, b):
     mask = ~torch.eye(K, dtype=torch.bool, device=device)
     phi_broadcast = phi_matrix
     q_broadcast = q
-    denom1 = (q_broadcast[None, :] * (sum_m ** 2) * phi_broadcast)[mask].reshape(K, K - 1).sum(dim=1)
+    denom1 = (N*q_broadcast[None, :] * (sum_m ** 2) * phi_broadcast)[mask].reshape(K, K - 1).sum(dim=1)
     gamma_expand2 = gamma_mk.unsqueeze(2)
     beta_expand2 = beta.unsqueeze(1)
     gamma_beta = (gamma_expand2 * beta_expand2).sum(dim=0)
